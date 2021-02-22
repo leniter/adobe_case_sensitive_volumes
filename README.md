@@ -1,3 +1,48 @@
+# New method to install Adobe CC series on case-sensitive volumes
+
+As old tricks not working on new versions of adobe software and macOS since `FSGetVolumeParms` function deprecated, I found an even more simple way.<br>
+No more coding and compiling needed!<br>
+You will need another macOS running on an case-insensitive volume though. Another computer or virtual machine with diffent macOS version would be fine.<br>
+
+## First, install your preferred adobe cc software on another macOS.
+
+## Copy application files and libraries from installed one to case-sensitive one.
+
+You can copy them via network share, or usb external drive, directly or compressed.<br>
+Admin permissions needed.<br>
+Put them exactly to the same path.<br>
+```
+1. /Applications/Adobe * (depends on which software you wanna use)
+2. /Applications/Utilities/Adobe * (all of them)
+3. /Library/Application Support/Adobe
+```
+
+## Fix attributes. 
+
+Since macOS may add quarantine attribute to files we copied from another computer, we should remove them!<br>
+And we should enable all sources.<br>
+Run commands below in `terminal`.<br>
+```
+sudo spctl --master-disable
+cd /Applications
+xattr -dr com.apple.quarantine *
+cd /Library/Application\ Support
+xattr -dr com.apple.quarantine *
+```
+<br>
+You may be informed that some files are not found, it's just fine.<br>
+
+## You should be able to run your adobe software now!
+
+This method is tested on macOS mojave (installed adobe 2021), big sur (case-sensitive).<br>
+
+
+#
+#
+#
+# Old readme from tzvetkoff below, for reference
+#
+
 # Installing Adobe CS6 on case-sensitive drives (Mac OS X)
 
 Well, everybody knows that Adobe are a **[censored]** company.
