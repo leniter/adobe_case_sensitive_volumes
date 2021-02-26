@@ -25,9 +25,9 @@ Run commands below in `terminal`.<br>
 ```
 sudo spctl --master-disable
 cd /Applications
-xattr -dr com.apple.quarantine *
+sudo xattr -dr com.apple.quarantine *
 cd /Library/Application\ Support
-xattr -dr com.apple.quarantine *
+sudo xattr -dr com.apple.quarantine *
 ```
 <br>
 You may be informed that some files are not found, it's just fine.<br>
